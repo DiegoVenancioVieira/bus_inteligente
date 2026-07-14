@@ -1,6 +1,55 @@
-# Deploy no Coolify — Bus Inteligente
+# Deploy — Bus Inteligente
 
-O **Directus já roda no seu Coolify** (`directus-bus.candidatosinteligentes.com.br`). Falta publicar o **backend Node** (uma única aplicação: API realtime + PWA passageiro + app motorista + painel gestão) no domínio público.
+O **Directus já roda no seu Coolify** (`directus-bus.candidatosinteligentes.com.br`). Falta publicar o **backend Node** (uma única aplicação: API realtime + PWA passageiro + app motorista + painel gestão).
+
+---
+
+## ⚡ VPS sem domínio (só IP) — leia primeiro
+
+A VPS já tem **Coolify + Traefik + 2 Directus + ~15 apps**. Análise do `docker ps`:
+
+**Portas do host já ocupadas:** 80, 443, 8080 (traefik/coolify-proxy) · 8000 (coolify) · 6001-6002 (realtime) · 5678 (n8n) · 8055 e 8056 (dois Directus) · 9090 (taiga) · 3001, 3002, 3004, 3005, 3006, 3008, 3010 · 8100.
+**➡️ A porta `8060` do nosso backend está LIVRE — sem conflito.**
+
+### A pegadinha do "só IP + HTTP"
+Navegadores tratam `http://IP` como **contexto inseguro** e bloqueiam:
+- **`navigator.geolocation`** → o **app do motorista não captura GPS real** (só o modo simulado funciona). ❌ quebra o piloto real.
+- **Service Worker** → sem offline/instalar-na-tela. (o app ainda abre e funciona online)
+- Passageiro e gestão funcionam normalmente sobre HTTP (não dependem de GPS).
+
+### Solução recomendada: HTTPS grátis via `sslip.io` (sem comprar domínio)
+`sslip.io` resolve qualquer `qualquer-coisa-<IP>.sslip.io` para o próprio IP. O Traefik do Coolify emite um **Let's Encrypt real** para esse host — HTTPS de verdade, GPS funciona, sem domínio próprio.
+
+1. No Coolify: **+ New → Application →** seu repositório → Build Pack **Dockerfile** → Port **8060**.
+2. **Domain:** `https://bus-187-77-62-124.sslip.io` (troque pelos octetos do IP da VPS com hífens).
+3. **Env vars:** `DIRECTUS_URL`, `DIRECTUS_TOKEN`, `PUBLIC_URL=https://bus-187-77-62-124.sslip.io`, `TZ=America/Maceio`.
+4. **Deploy.** O Traefik roteia por Host header no 443 que ele já ocupa — **nenhuma porta nova exposta, zero conflito**. WebSocket funciona automático.
+
+### Alternativa rápida: HTTP puro na porta 8060 (sem Coolify)
+Para testar por dentro / rede local, sem GPS de motorista:
+```bash
+git clone <repo> && cd bus_inteligente
+cp .env.deploy.example .env      # edite DIRECTUS_TOKEN e PUBLIC_URL=http://SEU_IP:8060
+docker compose up -d --build
+# acesse http://SEU_IP:8060  (passageiro e gestão OK; motorista só com GPS simulado)
+```
+O `docker-compose.yml` na raiz já mapeia só a porta 8060 (livre).
+
+### Regenerar os QR após definir o PUBLIC_URL
+Os QR de `infra/qrcodes/` foram gerados apontando para o domínio antigo. Com o `PUBLIC_URL` novo, regenere:
+```bash
+docker exec bus-inteligente npm run qrcodes -- --route CT-ATL
+# ou localmente com PUBLIC_URL no config/.env
+```
+
+### DIRECTUS_URL na mesma VPS
+Como o Directus está nesta VPS, `DIRECTUS_URL=https://directus-bus.candidatosinteligentes.com.br` funciona (sai e volta pelo Traefik). Para cortar a volta, conecte o container à rede do Coolify e use a URL interna do serviço Directus (`http://<container-directus>:8055`). Para o piloto, a URL pública já basta.
+
+---
+
+## Deploy com domínio próprio (referência)
+
+Quando tiver o domínio `bus.candidatosinteligentes.com.br`:
 
 ## Visão do que vai ao ar
 

@@ -255,20 +255,39 @@ def create_relations():
         else:
             fail(f"relação {coll}.{field}", st, body)
 
+def spatial_supported():
+    """Confirma que a leitura COMPLETA de stops funciona. Bancos sem espacial
+    (ex.: SQLite sem SpatiaLite) quebram qualquer read que inclua o campo geometry,
+    pois o Directus gera st_astext(geo). É essencial NÃO restringir os campos aqui —
+    com fields=id o geo não é lido e o teste passaria falsamente."""
+    st, _ = req("GET", "/items/stops?limit=1")
+    return ok(st)
+
 def try_geometry():
-    log("== 3. Campo geo (PostGIS, opcional) ==")
+    log("== 3. Campo geo (espacial, opcional) ==")
     st, body = req("GET", "/fields/stops")
-    if ok(st) and any(f["field"] == "geo" for f in body.get("data", [])):
-        log("  [skip] stops.geo já existe")
+    has_geo = ok(st) and any(f["field"] == "geo" for f in body.get("data", []))
+    if has_geo:
+        if spatial_supported():
+            log("  [skip] stops.geo já existe e o banco suporta espacial")
+        else:
+            req("DELETE", "/fields/stops/geo")
+            log("  [corrigido] banco SEM suporte espacial (ex.: SQLite): campo geo removido — app usa lat/lng")
         return
     payload = {"field": "geo", "type": "geometry.Point",
                "meta": {"interface": "map", "options": {"geometryType": "Point"}},
                "schema": {"is_nullable": True}}
     st, body = req("POST", "/fields/stops", payload)
-    if ok(st):
+    if not ok(st):
+        log(f"  [aviso] geometry indisponível: HTTP {st} — seguindo com lat/lng. {str(body)[:120]}")
+        return
+    # criado: valida que o banco consegue LER de fato; senão, remove (SQLite aceita
+    # a coluna mas falha no st_astext em toda leitura de stops).
+    if spatial_supported():
         log("  [ok] stops.geo (Point)")
     else:
-        log(f"  [aviso] geometry indisponível (PostGIS ausente?): HTTP {st} — seguindo com lat/lng. {str(body)[:160]}")
+        req("DELETE", "/fields/stops/geo")
+        log("  [corrigido] banco SEM suporte espacial: campo geo removido — app usa lat/lng")
 
 # ---------------------------------------------------------------- 2. papéis/permissões
 def get_or_create(path, filt_field, filt_value, payload, label):

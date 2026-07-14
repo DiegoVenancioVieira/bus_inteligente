@@ -12,8 +12,9 @@ Valores compartilhados por todos os goals. Referencie este arquivo em qualquer g
 | URL pública (passageiro + gestão) | `https://bus.candidatosinteligentes.com.br` |
 | Padrão de URL do QR (ponto) | `https://bus.candidatosinteligentes.com.br/p/{stop_code}` |
 | Padrão de URL do QR (veículo) | `https://bus.candidatosinteligentes.com.br/v/{vehicle_code}` |
-| Directus (API/DB/Auth/Realtime) | `https://directus-bus.candidatosinteligentes.com.br` |
+| Directus (API/DB/Auth/Realtime) | **`http://192.168.0.118:8057`** (VPS local, projeto "Directus - BUS"). ⚠️ o antigo `directus-bus.candidatosinteligentes.com.br` NÃO é o correto |
 | Token estático Directus | Variável `DIRECTUS_TOKEN` em `config/.env` |
+| **Banco do Directus** | **SQLite (sem suporte espacial)** — o campo `geo` foi removido do schema; o app usa `lat`/`lng`. O `bootstrap.py` detecta e remove `geo` automaticamente em bancos sem espacial. |
 
 ## Endpoints Directus úteis
 - REST base: `https://directus-bus.candidatosinteligentes.com.br/items/{collection}`
@@ -21,9 +22,10 @@ Valores compartilhados por todos os goals. Referencie este arquivo em qualquer g
 - Realtime (WebSocket): `wss://directus-bus.candidatosinteligentes.com.br/websocket`
 - Health: `GET /server/health` · Info: `GET /server/info`
 
-## Estado da infraestrutura (última atualização: 2026-07-10 — goal 00 CONCLUÍDO)
-- Directus **11.17.4** no ar (`ping`→`pong`, health `ok`, TLS confiável) · Postgres **com PostGIS** (campo `geo` funcionou).
-- **Schema provisionado**: 10 coleções do PRD §5 + 12 relações m2o + `stops.geo` (Point). Snapshot em `infra/schema/snapshot.yaml`.
+## Estado da infraestrutura (última atualização: 2026-07-14 — Directus CORRIGIDO)
+- **Directus correto: `http://192.168.0.118:8057`** (Directus 11.17.4, **SQLite**), reprovisionado do zero em 2026-07-14. Alcançável desta máquina (mesma LAN). O `directus-bus.candidatosinteligentes.com.br` usado nos goals 00-06 era o instância ERRADA.
+- **Schema provisionado**: 10 coleções do PRD §5 + 12 relações m2o. **SEM campo `geo`** (SQLite não tem espacial; app usa lat/lng). Snapshot atualizado em `infra/schema/snapshot.yaml`.
+- Armadilhas resolvidas nesta migração: (1) campo `geo` quebrava toda leitura de `stops` (`st_astext` inexistente no SQLite) → `bootstrap.py` agora detecta e remove; (2) `stop_times` da 1ª tentativa nasceram com `stop_id` nulo (resposta 500 fazia o upsert retornar None) → viagens apagadas e recriadas corretas.
 - **Papéis**: Public (leitura filtrada), Driver (grava posições), Operator (CRUD), Administrator. Verificado: anônimo lê stops, anônimo NÃO grava posição (403), driver grava (200).
 - **Retenção**: flow diário 03:00 expurga `vehicle_positions` >30 dias.
 - **Seeds Aracaju** carregados: SMTT, linha `CT-ATL`, 8 pontos, 2 viagens, 2 veículos, 10 `qr_codes`.

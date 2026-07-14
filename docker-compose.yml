@@ -1,0 +1,33 @@
+# Deploy do backend Bus Inteligente numa VPS (IP-only, sem Coolify).
+# Porta 8060 confirmada LIVRE na VPS atual (nenhum container publica 8060).
+#
+# Uso na VPS:
+#   1. git clone <repo> && cd bus_inteligente
+#   2. crie um arquivo .env ao lado deste (ver .env.deploy.example)
+#   3. docker compose up -d --build
+#   4. acesse http://SEU_IP:8060
+#
+# ATENÇÃO: sobre HTTP puro (http://IP), o navegador BLOQUEIA GPS e Service Worker
+# (secure context). O app do MOTORISTA precisa de GPS real → use HTTPS via
+# sslip.io no Coolify (ver DEPLOY.md, seção "VPS sem domínio"). Passageiro e
+# gestão funcionam sobre HTTP.
+services:
+  backend:
+    build: .
+    image: bus-inteligente:latest
+    container_name: bus-inteligente
+    restart: unless-stopped
+    ports:
+      - "8060:8060"
+    environment:
+      DIRECTUS_URL: ${DIRECTUS_URL:-http://192.168.0.118:8057}
+      DIRECTUS_TOKEN: ${DIRECTUS_TOKEN:?defina DIRECTUS_TOKEN no .env}
+      PUBLIC_URL: ${PUBLIC_URL:?defina PUBLIC_URL no .env (ex.: http://SEU_IP:8060)}
+      TZ: America/Maceio
+      ALERT_WEBHOOK_URL: ${ALERT_WEBHOOK_URL:-}
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8060/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

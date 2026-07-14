@@ -1,6 +1,6 @@
 version: 1
 directus: 11.17.4
-vendor: postgres
+vendor: sqlite
 collections:
   - collection: agencies
     meta:
@@ -270,9 +270,9 @@ fields:
     schema:
       name: id
       table: agencies
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: false
@@ -310,7 +310,7 @@ fields:
     schema:
       name: name
       table: agencies
-      data_type: character varying
+      data_type: varchar
       default_value: null
       max_length: 255
       numeric_precision: null
@@ -350,7 +350,7 @@ fields:
     schema:
       name: timezone
       table: agencies
-      data_type: character varying
+      data_type: varchar
       default_value: America/Maceio
       max_length: 255
       numeric_precision: null
@@ -433,9 +433,9 @@ fields:
     schema:
       name: id
       table: driver_assignments
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: false
@@ -449,7 +449,7 @@ fields:
       foreign_key_column: null
   - collection: driver_assignments
     field: driver_id
-    type: uuid
+    type: string
     meta:
       collection: driver_assignments
       conditions: null
@@ -474,9 +474,9 @@ fields:
     schema:
       name: driver_id
       table: driver_assignments
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -490,7 +490,7 @@ fields:
       foreign_key_column: id
   - collection: driver_assignments
     field: vehicle_id
-    type: uuid
+    type: string
     meta:
       collection: driver_assignments
       conditions: null
@@ -515,9 +515,9 @@ fields:
     schema:
       name: vehicle_id
       table: driver_assignments
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -531,7 +531,7 @@ fields:
       foreign_key_column: id
   - collection: driver_assignments
     field: trip_id
-    type: uuid
+    type: string
     meta:
       collection: driver_assignments
       conditions: null
@@ -556,9 +556,9 @@ fields:
     schema:
       name: trip_id
       table: driver_assignments
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -588,7 +588,8 @@ fields:
       required: false
       searchable: true
       sort: 5
-      special: null
+      special:
+        - cast-timestamp
       translations: null
       validation: null
       validation_message: null
@@ -596,7 +597,7 @@ fields:
     schema:
       name: shift_start
       table: driver_assignments
-      data_type: timestamp with time zone
+      data_type: datetime
       default_value: null
       max_length: null
       numeric_precision: null
@@ -628,7 +629,8 @@ fields:
       required: false
       searchable: true
       sort: 6
-      special: null
+      special:
+        - cast-timestamp
       translations: null
       validation: null
       validation_message: null
@@ -636,7 +638,7 @@ fields:
     schema:
       name: shift_end
       table: driver_assignments
-      data_type: timestamp with time zone
+      data_type: datetime
       default_value: null
       max_length: null
       numeric_precision: null
@@ -683,7 +685,7 @@ fields:
     schema:
       name: status
       table: driver_assignments
-      data_type: character varying
+      data_type: varchar
       default_value: scheduled
       max_length: 255
       numeric_precision: null
@@ -724,9 +726,9 @@ fields:
     schema:
       name: id
       table: qr_codes
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: false
@@ -769,7 +771,7 @@ fields:
     schema:
       name: target_type
       table: qr_codes
-      data_type: character varying
+      data_type: varchar
       default_value: null
       max_length: 255
       numeric_precision: null
@@ -785,7 +787,7 @@ fields:
       foreign_key_column: null
   - collection: qr_codes
     field: target_id
-    type: uuid
+    type: string
     meta:
       collection: qr_codes
       conditions: null
@@ -809,9 +811,9 @@ fields:
     schema:
       name: target_id
       table: qr_codes
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -849,7 +851,7 @@ fields:
     schema:
       name: public_code
       table: qr_codes
-      data_type: character varying
+      data_type: varchar
       default_value: null
       max_length: 255
       numeric_precision: null
@@ -892,8 +894,8 @@ fields:
       data_type: integer
       default_value: 0
       max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
+      numeric_precision: null
+      numeric_scale: null
       is_nullable: true
       is_unique: false
       is_indexed: false
@@ -923,6 +925,7 @@ fields:
       sort: 6
       special:
         - date-created
+        - cast-timestamp
       translations: null
       validation: null
       validation_message: null
@@ -930,7 +933,7 @@ fields:
     schema:
       name: generated_at
       table: qr_codes
-      data_type: timestamp with time zone
+      data_type: datetime
       default_value: null
       max_length: null
       numeric_precision: null
@@ -971,9 +974,9 @@ fields:
     schema:
       name: id
       table: routes
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: false
@@ -987,7 +990,7 @@ fields:
       foreign_key_column: null
   - collection: routes
     field: agency_id
-    type: uuid
+    type: string
     meta:
       collection: routes
       conditions: null
@@ -1012,9 +1015,9 @@ fields:
     schema:
       name: agency_id
       table: routes
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -1052,7 +1055,7 @@ fields:
     schema:
       name: short_name
       table: routes
-      data_type: character varying
+      data_type: varchar
       default_value: null
       max_length: 255
       numeric_precision: null
@@ -1092,7 +1095,7 @@ fields:
     schema:
       name: long_name
       table: routes
-      data_type: character varying
+      data_type: varchar
       default_value: null
       max_length: 255
       numeric_precision: null
@@ -1132,7 +1135,7 @@ fields:
     schema:
       name: color
       table: routes
-      data_type: character varying
+      data_type: varchar
       default_value: '#1565C0'
       max_length: 255
       numeric_precision: null
@@ -1175,7 +1178,7 @@ fields:
     schema:
       name: type
       table: routes
-      data_type: character varying
+      data_type: varchar
       default_value: bus
       max_length: 255
       numeric_precision: null
@@ -1220,7 +1223,7 @@ fields:
     schema:
       name: status
       table: routes
-      data_type: character varying
+      data_type: varchar
       default_value: active
       max_length: 255
       numeric_precision: null
@@ -1261,9 +1264,9 @@ fields:
     schema:
       name: id
       table: service_alerts
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: false
@@ -1308,7 +1311,7 @@ fields:
     schema:
       name: scope
       table: service_alerts
-      data_type: character varying
+      data_type: varchar
       default_value: system
       max_length: 255
       numeric_precision: null
@@ -1324,7 +1327,7 @@ fields:
       foreign_key_column: null
   - collection: service_alerts
     field: route_id
-    type: uuid
+    type: string
     meta:
       collection: service_alerts
       conditions: null
@@ -1349,9 +1352,9 @@ fields:
     schema:
       name: route_id
       table: service_alerts
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -1365,7 +1368,7 @@ fields:
       foreign_key_column: id
   - collection: service_alerts
     field: stop_id
-    type: uuid
+    type: string
     meta:
       collection: service_alerts
       conditions: null
@@ -1390,9 +1393,9 @@ fields:
     schema:
       name: stop_id
       table: service_alerts
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -1430,7 +1433,7 @@ fields:
     schema:
       name: title
       table: service_alerts
-      data_type: character varying
+      data_type: varchar
       default_value: null
       max_length: 255
       numeric_precision: null
@@ -1517,7 +1520,7 @@ fields:
     schema:
       name: severity
       table: service_alerts
-      data_type: character varying
+      data_type: varchar
       default_value: info
       max_length: 255
       numeric_precision: null
@@ -1549,7 +1552,8 @@ fields:
       required: false
       searchable: true
       sort: 8
-      special: null
+      special:
+        - cast-timestamp
       translations: null
       validation: null
       validation_message: null
@@ -1557,7 +1561,7 @@ fields:
     schema:
       name: active_from
       table: service_alerts
-      data_type: timestamp with time zone
+      data_type: datetime
       default_value: null
       max_length: null
       numeric_precision: null
@@ -1589,7 +1593,8 @@ fields:
       required: false
       searchable: true
       sort: 9
-      special: null
+      special:
+        - cast-timestamp
       translations: null
       validation: null
       validation_message: null
@@ -1597,7 +1602,7 @@ fields:
     schema:
       name: active_to
       table: service_alerts
-      data_type: timestamp with time zone
+      data_type: datetime
       default_value: null
       max_length: null
       numeric_precision: null
@@ -1638,9 +1643,9 @@ fields:
     schema:
       name: id
       table: stop_times
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: false
@@ -1654,7 +1659,7 @@ fields:
       foreign_key_column: null
   - collection: stop_times
     field: trip_id
-    type: uuid
+    type: string
     meta:
       collection: stop_times
       conditions: null
@@ -1679,9 +1684,9 @@ fields:
     schema:
       name: trip_id
       table: stop_times
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -1695,7 +1700,7 @@ fields:
       foreign_key_column: id
   - collection: stop_times
     field: stop_id
-    type: uuid
+    type: string
     meta:
       collection: stop_times
       conditions: null
@@ -1720,9 +1725,9 @@ fields:
     schema:
       name: stop_id
       table: stop_times
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -1763,8 +1768,8 @@ fields:
       data_type: integer
       default_value: null
       max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
+      numeric_precision: null
+      numeric_scale: null
       is_nullable: true
       is_unique: false
       is_indexed: false
@@ -1800,7 +1805,7 @@ fields:
     schema:
       name: scheduled_time
       table: stop_times
-      data_type: time without time zone
+      data_type: time
       default_value: null
       max_length: null
       numeric_precision: null
@@ -1841,9 +1846,9 @@ fields:
     schema:
       name: id
       table: stops
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: false
@@ -1881,7 +1886,7 @@ fields:
     schema:
       name: code
       table: stops
-      data_type: character varying
+      data_type: varchar
       default_value: null
       max_length: 255
       numeric_precision: null
@@ -1921,7 +1926,7 @@ fields:
     schema:
       name: name
       table: stops
-      data_type: character varying
+      data_type: varchar
       default_value: null
       max_length: 255
       numeric_precision: null
@@ -1937,7 +1942,7 @@ fields:
       foreign_key_column: null
   - collection: stops
     field: lat
-    type: decimal
+    type: float
     meta:
       collection: stops
       conditions: null
@@ -1961,11 +1966,11 @@ fields:
     schema:
       name: lat
       table: stops
-      data_type: numeric
+      data_type: float
       default_value: null
       max_length: null
-      numeric_precision: 10
-      numeric_scale: 7
+      numeric_precision: null
+      numeric_scale: null
       is_nullable: false
       is_unique: false
       is_indexed: false
@@ -1977,7 +1982,7 @@ fields:
       foreign_key_column: null
   - collection: stops
     field: lng
-    type: decimal
+    type: float
     meta:
       collection: stops
       conditions: null
@@ -2001,11 +2006,11 @@ fields:
     schema:
       name: lng
       table: stops
-      data_type: numeric
+      data_type: float
       default_value: null
       max_length: null
-      numeric_precision: 10
-      numeric_scale: 7
+      numeric_precision: null
+      numeric_scale: null
       is_nullable: false
       is_unique: false
       is_indexed: false
@@ -2057,47 +2062,6 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
-  - collection: stops
-    field: geo
-    type: geometry.Point
-    meta:
-      collection: stops
-      conditions: null
-      display: null
-      display_options: null
-      field: geo
-      group: null
-      hidden: false
-      interface: map
-      note: null
-      options:
-        geometryType: Point
-      readonly: false
-      required: false
-      searchable: true
-      sort: 7
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: full
-    schema:
-      name: geo
-      table: stops
-      data_type: POINT
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_indexed: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
   - collection: trips
     field: id
     type: uuid
@@ -2125,9 +2089,9 @@ fields:
     schema:
       name: id
       table: trips
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: false
@@ -2141,7 +2105,7 @@ fields:
       foreign_key_column: null
   - collection: trips
     field: route_id
-    type: uuid
+    type: string
     meta:
       collection: trips
       conditions: null
@@ -2166,9 +2130,9 @@ fields:
     schema:
       name: route_id
       table: trips
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -2206,7 +2170,7 @@ fields:
     schema:
       name: headsign
       table: trips
-      data_type: character varying
+      data_type: varchar
       default_value: null
       max_length: 255
       numeric_precision: null
@@ -2251,7 +2215,7 @@ fields:
     schema:
       name: direction
       table: trips
-      data_type: character varying
+      data_type: varchar
       default_value: null
       max_length: 255
       numeric_precision: null
@@ -2334,9 +2298,9 @@ fields:
     schema:
       name: id
       table: vehicle_positions
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: false
@@ -2350,7 +2314,7 @@ fields:
       foreign_key_column: null
   - collection: vehicle_positions
     field: vehicle_id
-    type: uuid
+    type: string
     meta:
       collection: vehicle_positions
       conditions: null
@@ -2375,9 +2339,9 @@ fields:
     schema:
       name: vehicle_id
       table: vehicle_positions
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -2391,7 +2355,7 @@ fields:
       foreign_key_column: id
   - collection: vehicle_positions
     field: trip_id
-    type: uuid
+    type: string
     meta:
       collection: vehicle_positions
       conditions: null
@@ -2416,9 +2380,9 @@ fields:
     schema:
       name: trip_id
       table: vehicle_positions
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -2432,7 +2396,7 @@ fields:
       foreign_key_column: id
   - collection: vehicle_positions
     field: lat
-    type: decimal
+    type: float
     meta:
       collection: vehicle_positions
       conditions: null
@@ -2456,11 +2420,11 @@ fields:
     schema:
       name: lat
       table: vehicle_positions
-      data_type: numeric
+      data_type: float
       default_value: null
       max_length: null
-      numeric_precision: 10
-      numeric_scale: 7
+      numeric_precision: null
+      numeric_scale: null
       is_nullable: false
       is_unique: false
       is_indexed: false
@@ -2472,7 +2436,7 @@ fields:
       foreign_key_column: null
   - collection: vehicle_positions
     field: lng
-    type: decimal
+    type: float
     meta:
       collection: vehicle_positions
       conditions: null
@@ -2496,11 +2460,11 @@ fields:
     schema:
       name: lng
       table: vehicle_positions
-      data_type: numeric
+      data_type: float
       default_value: null
       max_length: null
-      numeric_precision: 10
-      numeric_scale: 7
+      numeric_precision: null
+      numeric_scale: null
       is_nullable: false
       is_unique: false
       is_indexed: false
@@ -2512,7 +2476,7 @@ fields:
       foreign_key_column: null
   - collection: vehicle_positions
     field: speed
-    type: decimal
+    type: float
     meta:
       collection: vehicle_positions
       conditions: null
@@ -2536,11 +2500,11 @@ fields:
     schema:
       name: speed
       table: vehicle_positions
-      data_type: numeric
+      data_type: float
       default_value: null
       max_length: null
-      numeric_precision: 6
-      numeric_scale: 2
+      numeric_precision: null
+      numeric_scale: null
       is_nullable: true
       is_unique: false
       is_indexed: false
@@ -2579,8 +2543,8 @@ fields:
       data_type: integer
       default_value: null
       max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
+      numeric_precision: null
+      numeric_scale: null
       is_nullable: true
       is_unique: false
       is_indexed: false
@@ -2623,7 +2587,7 @@ fields:
     schema:
       name: occupancy
       table: vehicle_positions
-      data_type: character varying
+      data_type: varchar
       default_value: null
       max_length: 255
       numeric_precision: null
@@ -2655,7 +2619,8 @@ fields:
       required: false
       searchable: true
       sort: 9
-      special: null
+      special:
+        - cast-timestamp
       translations: null
       validation: null
       validation_message: null
@@ -2663,7 +2628,7 @@ fields:
     schema:
       name: recorded_at
       table: vehicle_positions
-      data_type: timestamp with time zone
+      data_type: datetime
       default_value: null
       max_length: null
       numeric_precision: null
@@ -2697,6 +2662,7 @@ fields:
       sort: 10
       special:
         - date-created
+        - cast-timestamp
       translations: null
       validation: null
       validation_message: null
@@ -2704,7 +2670,7 @@ fields:
     schema:
       name: received_at
       table: vehicle_positions
-      data_type: timestamp with time zone
+      data_type: datetime
       default_value: null
       max_length: null
       numeric_precision: null
@@ -2745,9 +2711,9 @@ fields:
     schema:
       name: id
       table: vehicles
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: false
@@ -2785,7 +2751,7 @@ fields:
     schema:
       name: code
       table: vehicles
-      data_type: character varying
+      data_type: varchar
       default_value: null
       max_length: 255
       numeric_precision: null
@@ -2801,7 +2767,7 @@ fields:
       foreign_key_column: null
   - collection: vehicles
     field: agency_id
-    type: uuid
+    type: string
     meta:
       collection: vehicles
       conditions: null
@@ -2826,9 +2792,9 @@ fields:
     schema:
       name: agency_id
       table: vehicles
-      data_type: uuid
+      data_type: char
       default_value: null
-      max_length: null
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
@@ -2866,7 +2832,7 @@ fields:
     schema:
       name: plate
       table: vehicles
-      data_type: character varying
+      data_type: varchar
       default_value: null
       max_length: 255
       numeric_precision: null
@@ -2909,8 +2875,8 @@ fields:
       data_type: integer
       default_value: null
       max_length: null
-      numeric_precision: 32
-      numeric_scale: 0
+      numeric_precision: null
+      numeric_scale: null
       is_nullable: true
       is_unique: false
       is_indexed: false
@@ -2995,7 +2961,7 @@ fields:
     schema:
       name: status
       table: vehicles
-      data_type: character varying
+      data_type: varchar
       default_value: in_service
       max_length: 255
       numeric_precision: null
@@ -3041,7 +3007,7 @@ relations:
       column: driver_id
       foreign_key_table: directus_users
       foreign_key_column: id
-      constraint_name: driver_assignments_driver_id_foreign
+      constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: driver_assignments
@@ -3062,7 +3028,7 @@ relations:
       column: vehicle_id
       foreign_key_table: vehicles
       foreign_key_column: id
-      constraint_name: driver_assignments_vehicle_id_foreign
+      constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: driver_assignments
@@ -3083,7 +3049,7 @@ relations:
       column: trip_id
       foreign_key_table: trips
       foreign_key_column: id
-      constraint_name: driver_assignments_trip_id_foreign
+      constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: routes
@@ -3104,7 +3070,7 @@ relations:
       column: agency_id
       foreign_key_table: agencies
       foreign_key_column: id
-      constraint_name: routes_agency_id_foreign
+      constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: service_alerts
@@ -3125,7 +3091,7 @@ relations:
       column: route_id
       foreign_key_table: routes
       foreign_key_column: id
-      constraint_name: service_alerts_route_id_foreign
+      constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: service_alerts
@@ -3146,7 +3112,7 @@ relations:
       column: stop_id
       foreign_key_table: stops
       foreign_key_column: id
-      constraint_name: service_alerts_stop_id_foreign
+      constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: stop_times
@@ -3167,7 +3133,7 @@ relations:
       column: trip_id
       foreign_key_table: trips
       foreign_key_column: id
-      constraint_name: stop_times_trip_id_foreign
+      constraint_name: null
       on_update: NO ACTION
       on_delete: CASCADE
   - collection: stop_times
@@ -3188,7 +3154,7 @@ relations:
       column: stop_id
       foreign_key_table: stops
       foreign_key_column: id
-      constraint_name: stop_times_stop_id_foreign
+      constraint_name: null
       on_update: NO ACTION
       on_delete: CASCADE
   - collection: trips
@@ -3209,7 +3175,7 @@ relations:
       column: route_id
       foreign_key_table: routes
       foreign_key_column: id
-      constraint_name: trips_route_id_foreign
+      constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: vehicle_positions
@@ -3230,7 +3196,7 @@ relations:
       column: vehicle_id
       foreign_key_table: vehicles
       foreign_key_column: id
-      constraint_name: vehicle_positions_vehicle_id_foreign
+      constraint_name: null
       on_update: NO ACTION
       on_delete: CASCADE
   - collection: vehicle_positions
@@ -3251,7 +3217,7 @@ relations:
       column: trip_id
       foreign_key_table: trips
       foreign_key_column: id
-      constraint_name: vehicle_positions_trip_id_foreign
+      constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
   - collection: vehicles
@@ -3272,6 +3238,6 @@ relations:
       column: agency_id
       foreign_key_table: agencies
       foreign_key_column: id
-      constraint_name: vehicles_agency_id_foreign
+      constraint_name: null
       on_update: NO ACTION
       on_delete: SET NULL
