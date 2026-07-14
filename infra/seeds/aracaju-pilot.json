@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "cidade": "Aracaju / Sergipe / Brasil",
+    "timezone": "America/Maceio",
+    "corredor": "Terminal do Centro <-> Orla de Atalaia",
+    "aviso": "Coordenadas APROXIMADAS de landmarks reais, para bootstrap. Validar/ajustar (snap ao itinerário oficial da SMTT) ANTES de gerar/imprimir QR de produção. Fonte oficial: https://smtt.aracaju.se.gov.br/itinerario-e-horario-de-onibus/",
+    "consumido_por": "goals/00-infra-directus.md (seeds)"
+  },
+  "agencies": [
+    {
+      "name": "SMTT Aracaju",
+      "timezone": "America/Maceio",
+      "contact": { "site": "https://smtt.aracaju.se.gov.br" }
+    }
+  ],
+  "routes": [
+    {
+      "short_name": "CT-ATL",
+      "long_name": "Terminal do Centro ↔ Orla de Atalaia",
+      "color": "#1565C0",
+      "type": "bus",
+      "status": "active",
+      "_obs": "short_name provisório. Confirmar numeração oficial da linha na SMTT antes do go-live."
+    }
+  ],
+  "stops": [
+    { "code": "CENTRO",  "name": "Terminal do Centro",                 "lat": -10.9110, "lng": -37.0500, "accessibility": { "rampa": true } },
+    { "code": "VALADAO", "name": "Praça General Valadão",     "lat": -10.9140, "lng": -37.0490, "accessibility": { "rampa": true } },
+    { "code": "IVOPRAD", "name": "Av. Ivo do Prado (13 de Julho)",     "lat": -10.9200, "lng": -37.0520, "accessibility": { "rampa": false } },
+    { "code": "COROAM",  "name": "Coroa do Meio",                      "lat": -10.9520, "lng": -37.0480, "accessibility": { "rampa": true } },
+    { "code": "SDUMONT", "name": "Av. Santos Dumont (início Atalaia)", "lat": -10.9700, "lng": -37.0470, "accessibility": { "rampa": true } },
+    { "code": "CARANGU", "name": "Orla - Passarela do Caranguejo",     "lat": -10.9890, "lng": -37.0455, "accessibility": { "rampa": true } },
+    { "code": "OCEANAR", "name": "Orla - Oceanário",              "lat": -10.9950, "lng": -37.0450, "accessibility": { "rampa": true } },
+    { "code": "ATLFIM",  "name": "Orla - Final Atalaia",               "lat": -11.0050, "lng": -37.0500, "accessibility": { "rampa": true } }
+  ],
+  "vehicles": [
+    { "code": "AJU-1001", "plate": "QAA1A01", "capacity": 70, "features": { "ar_condicionado": true,  "acessivel": true },  "status": "in_service" },
+    { "code": "AJU-1002", "plate": "QAA1A02", "capacity": 70, "features": { "ar_condicionado": false, "acessivel": true },  "status": "in_service" }
+  ],
+  "trips": [
+    {
+      "route": "CT-ATL",
+      "headsign": "Orla de Atalaia",
+      "direction": "ida",
+      "service_days": { "seg_sex": true, "sab": true, "dom": true },
+      "stop_times": [
+        { "stop": "CENTRO",  "sequence": 1, "scheduled_time": "06:00:00" },
+        { "stop": "VALADAO", "sequence": 2, "scheduled_time": "06:05:00" },
+        { "stop": "IVOPRAD", "sequence": 3, "scheduled_time": "06:10:00" },
+        { "stop": "COROAM",  "sequence": 4, "scheduled_time": "06:20:00" },
+        { "stop": "SDUMONT", "sequence": 5, "scheduled_time": "06:28:00" },
+        { "stop": "CARANGU", "sequence": 6, "scheduled_time": "06:35:00" },
+        { "stop": "OCEANAR", "sequence": 7, "scheduled_time": "06:40:00" },
+        { "stop": "ATLFIM",  "sequence": 8, "scheduled_time": "06:45:00" }
+      ]
+    },
+    {
+      "route": "CT-ATL",
+      "headsign": "Terminal do Centro",
+      "direction": "volta",
+      "service_days": { "seg_sex": true, "sab": true, "dom": true },
+      "stop_times": [
+        { "stop": "ATLFIM",  "sequence": 1, "scheduled_time": "07:00:00" },
+        { "stop": "OCEANAR", "sequence": 2, "scheduled_time": "07:05:00" },
+        { "stop": "CARANGU", "sequence": 3, "scheduled_time": "07:10:00" },
+        { "stop": "SDUMONT", "sequence": 4, "scheduled_time": "07:17:00" },
+        { "stop": "COROAM",  "sequence": 5, "scheduled_time": "07:25:00" },
+        { "stop": "IVOPRAD", "sequence": 6, "scheduled_time": "07:35:00" },
+        { "stop": "VALADAO", "sequence": 7, "scheduled_time": "07:40:00" },
+        { "stop": "CENTRO",  "sequence": 8, "scheduled_time": "07:45:00" }
+      ]
+    }
+  ]
+}

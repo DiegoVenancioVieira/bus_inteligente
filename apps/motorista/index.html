@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0d1b2a">
+<title>Bus Inteligente — Motorista</title>
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+  :root {
+    --bg: #0d1b2a; --card: #1b263b; --text: #e0e6ed; --muted: #8d99ae;
+    --ok: #2ec4b6; --warn: #ffbf00; --err: #e63946; --accent: #4ea8de;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: system-ui, -apple-system, sans-serif;
+    min-height: 100vh; display: flex; flex-direction: column;
+    font-size: 18px;
+  }
+  header { padding: 14px 20px; background: var(--card); display: flex; align-items: center; gap: 10px; }
+  header h1 { font-size: 1.1rem; font-weight: 600; }
+  main { flex: 1; padding: 20px; max-width: 520px; width: 100%; margin: 0 auto; }
+  .screen { display: none; }
+  .screen.active { display: block; }
+  label { display: block; margin: 14px 0 6px; color: var(--muted); font-size: .95rem; }
+  input, select {
+    width: 100%; padding: 16px; font-size: 1.15rem; border-radius: 10px;
+    border: 1px solid #33415c; background: var(--card); color: var(--text);
+  }
+  button {
+    width: 100%; padding: 20px; margin-top: 18px; font-size: 1.25rem; font-weight: 700;
+    border: 0; border-radius: 12px; cursor: pointer; color: #fff; background: var(--accent);
+  }
+  button.danger { background: var(--err); }
+  button.ghost { background: transparent; border: 1px solid #33415c; color: var(--muted); font-size: 1rem; padding: 12px; }
+  button:disabled { opacity: .5; }
+  .status-banner {
+    padding: 22px; border-radius: 14px; text-align: center; margin-bottom: 18px;
+    font-size: 1.35rem; font-weight: 800; background: var(--card);
+  }
+  .status-banner.ok { background: #12352f; color: var(--ok); }
+  .status-banner.warn { background: #3a2e00; color: var(--warn); }
+  .status-banner.err { background: #3a1216; color: var(--err); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+  .tile { background: var(--card); border-radius: 12px; padding: 16px; text-align: center; }
+  .tile .v { font-size: 1.9rem; font-weight: 800; }
+  .tile .k { color: var(--muted); font-size: .85rem; margin-top: 4px; }
+  .alert {
+    background: #3a2e00; border-left: 5px solid var(--warn); padding: 12px 14px;
+    border-radius: 8px; margin-top: 10px; font-size: .98rem;
+  }
+  .alert.critical { background: #3a1216; border-color: var(--err); }
+  .msg { margin-top: 12px; color: var(--err); min-height: 1.4em; font-size: .95rem; }
+  .hint { color: var(--muted); font-size: .85rem; margin-top: 10px; text-align: center; }
+  #shift-info { color: var(--muted); text-align: center; margin-bottom: 14px; }
+</style>
+</head>
+<body>
+<header>
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="15" rx="3" fill="#4ea8de"/><rect x="6.5" y="6" width="11" height="5" rx="1" fill="#0d1b2a"/><circle cx="8" cy="19.5" r="1.8" fill="#e0e6ed"/><circle cx="16" cy="19.5" r="1.8" fill="#e0e6ed"/></svg>
+  <h1>Bus Inteligente — Motorista</h1>
+</header>
+<main>
+
+  <!-- LOGIN (RF-M1) -->
+  <section id="screen-login" class="screen active">
+    <label for="email">Usuário (e-mail)</label>
+    <input id="email" type="email" autocomplete="username" inputmode="email">
+    <label for="pin">PIN</label>
+    <input id="pin" type="password" autocomplete="current-password" inputmode="numeric">
+    <button id="btn-login">ENTRAR</button>
+    <div id="login-msg" class="msg"></div>
+  </section>
+
+  <!-- INÍCIO DE TURNO (RF-M2) -->
+  <section id="screen-setup" class="screen">
+    <label for="sel-vehicle">Veículo</label>
+    <select id="sel-vehicle"></select>
+    <label for="sel-trip">Linha / sentido</label>
+    <select id="sel-trip"></select>
+    <button id="btn-start">INICIAR TURNO</button>
+    <button id="btn-logout" class="ghost">Sair</button>
+    <div id="setup-msg" class="msg"></div>
+  </section>
+
+  <!-- PAINEL DO TURNO (RF-M3/M4/M7) -->
+  <section id="screen-dash" class="screen">
+    <div id="shift-info"></div>
+    <div id="status" class="status-banner warn">Aguardando GPS…</div>
+    <div class="grid">
+      <div class="tile"><div class="v" id="speed">–</div><div class="k">km/h</div></div>
+      <div class="tile"><div class="v" id="buffer">0</div><div class="k">no buffer</div></div>
+    </div>
+    <div class="tile" style="margin-bottom:18px"><div class="v" id="next-stop" style="font-size:1.2rem">–</div><div class="k">próxima parada</div></div>
+    <div id="alerts"></div>
+    <button id="btn-end" class="danger">ENCERRAR TURNO</button>
+    <div class="hint" id="gps-hint"></div>
+  </section>
+
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,3277 @@
+version: 1
+directus: 11.17.4
+vendor: postgres
+collections:
+  - collection: agencies
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: agencies
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: domain
+      item_duplication_fields: null
+      note: Empresas operadoras
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: agencies
+  - collection: driver_assignments
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: driver_assignments
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: badge
+      item_duplication_fields: null
+      note: Escala motorista↔veículo↔viagem
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: driver_assignments
+  - collection: qr_codes
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: qr_codes
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: qr_code_2
+      item_duplication_fields: null
+      note: QR Codes gerados (rastreio)
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: qr_codes
+  - collection: routes
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: routes
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: route
+      item_duplication_fields: null
+      note: Linhas de ônibus
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: routes
+  - collection: service_alerts
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: service_alerts
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: campaign
+      item_duplication_fields: null
+      note: Avisos ao passageiro/motorista
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: service_alerts
+  - collection: stop_times
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: stop_times
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: schedule
+      item_duplication_fields: null
+      note: Sequência de pontos por viagem
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: stop_times
+  - collection: stops
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: stops
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: pin_drop
+      item_duplication_fields: null
+      note: Pontos de ônibus
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: stops
+  - collection: trips
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: trips
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: alt_route
+      item_duplication_fields: null
+      note: Viagens (linha+sentido)
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: trips
+  - collection: vehicle_positions
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: vehicle_positions
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: gps_fixed
+      item_duplication_fields: null
+      note: Posições GPS (alto volume)
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: vehicle_positions
+  - collection: vehicles
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: vehicles
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: directions_bus
+      item_duplication_fields: null
+      note: Frota
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: vehicles
+fields:
+  - collection: agencies
+    field: id
+    type: uuid
+    meta:
+      collection: agencies
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: agencies
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: agencies
+    field: name
+    type: string
+    meta:
+      collection: agencies
+      conditions: null
+      display: null
+      display_options: null
+      field: name
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: name
+      table: agencies
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: agencies
+    field: timezone
+    type: string
+    meta:
+      collection: agencies
+      conditions: null
+      display: null
+      display_options: null
+      field: timezone
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: timezone
+      table: agencies
+      data_type: character varying
+      default_value: America/Maceio
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: agencies
+    field: contact
+    type: json
+    meta:
+      collection: agencies
+      conditions: null
+      display: null
+      display_options: null
+      field: contact
+      group: null
+      hidden: false
+      interface: input-code
+      note: null
+      options:
+        language: json
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: contact
+      table: agencies
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: driver_assignments
+    field: id
+    type: uuid
+    meta:
+      collection: driver_assignments
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: driver_assignments
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: driver_assignments
+    field: driver_id
+    type: uuid
+    meta:
+      collection: driver_assignments
+      conditions: null
+      display: null
+      display_options: null
+      field: driver_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: driver_id
+      table: driver_assignments
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: driver_assignments
+    field: vehicle_id
+    type: uuid
+    meta:
+      collection: driver_assignments
+      conditions: null
+      display: null
+      display_options: null
+      field: vehicle_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: vehicle_id
+      table: driver_assignments
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: vehicles
+      foreign_key_column: id
+  - collection: driver_assignments
+    field: trip_id
+    type: uuid
+    meta:
+      collection: driver_assignments
+      conditions: null
+      display: null
+      display_options: null
+      field: trip_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: trip_id
+      table: driver_assignments
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: trips
+      foreign_key_column: id
+  - collection: driver_assignments
+    field: shift_start
+    type: timestamp
+    meta:
+      collection: driver_assignments
+      conditions: null
+      display: null
+      display_options: null
+      field: shift_start
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: shift_start
+      table: driver_assignments
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: driver_assignments
+    field: shift_end
+    type: timestamp
+    meta:
+      collection: driver_assignments
+      conditions: null
+      display: null
+      display_options: null
+      field: shift_end
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: shift_end
+      table: driver_assignments
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: driver_assignments
+    field: status
+    type: string
+    meta:
+      collection: driver_assignments
+      conditions: null
+      display: null
+      display_options: null
+      field: status
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: scheduled
+            value: scheduled
+          - text: active
+            value: active
+          - text: finished
+            value: finished
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: status
+      table: driver_assignments
+      data_type: character varying
+      default_value: scheduled
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: qr_codes
+    field: id
+    type: uuid
+    meta:
+      collection: qr_codes
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: qr_codes
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: qr_codes
+    field: target_type
+    type: string
+    meta:
+      collection: qr_codes
+      conditions: null
+      display: null
+      display_options: null
+      field: target_type
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: stop
+            value: stop
+          - text: vehicle
+            value: vehicle
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: target_type
+      table: qr_codes
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: qr_codes
+    field: target_id
+    type: uuid
+    meta:
+      collection: qr_codes
+      conditions: null
+      display: null
+      display_options: null
+      field: target_id
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: target_id
+      table: qr_codes
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: qr_codes
+    field: public_code
+    type: string
+    meta:
+      collection: qr_codes
+      conditions: null
+      display: null
+      display_options: null
+      field: public_code
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: public_code
+      table: qr_codes
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: qr_codes
+    field: scans
+    type: integer
+    meta:
+      collection: qr_codes
+      conditions: null
+      display: null
+      display_options: null
+      field: scans
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: scans
+      table: qr_codes
+      data_type: integer
+      default_value: 0
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: qr_codes
+    field: generated_at
+    type: timestamp
+    meta:
+      collection: qr_codes
+      conditions: null
+      display: null
+      display_options: null
+      field: generated_at
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: generated_at
+      table: qr_codes
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: routes
+    field: id
+    type: uuid
+    meta:
+      collection: routes
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: routes
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: routes
+    field: agency_id
+    type: uuid
+    meta:
+      collection: routes
+      conditions: null
+      display: null
+      display_options: null
+      field: agency_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: agency_id
+      table: routes
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: agencies
+      foreign_key_column: id
+  - collection: routes
+    field: short_name
+    type: string
+    meta:
+      collection: routes
+      conditions: null
+      display: null
+      display_options: null
+      field: short_name
+      group: null
+      hidden: false
+      interface: input
+      note: 'ex.: "042"'
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: short_name
+      table: routes
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: routes
+    field: long_name
+    type: string
+    meta:
+      collection: routes
+      conditions: null
+      display: null
+      display_options: null
+      field: long_name
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: long_name
+      table: routes
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: routes
+    field: color
+    type: string
+    meta:
+      collection: routes
+      conditions: null
+      display: null
+      display_options: null
+      field: color
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: color
+      table: routes
+      data_type: character varying
+      default_value: '#1565C0'
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: routes
+    field: type
+    type: string
+    meta:
+      collection: routes
+      conditions: null
+      display: null
+      display_options: null
+      field: type
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: bus
+            value: bus
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: type
+      table: routes
+      data_type: character varying
+      default_value: bus
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: routes
+    field: status
+    type: string
+    meta:
+      collection: routes
+      conditions: null
+      display: null
+      display_options: null
+      field: status
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: active
+            value: active
+          - text: inactive
+            value: inactive
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: status
+      table: routes
+      data_type: character varying
+      default_value: active
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: service_alerts
+    field: id
+    type: uuid
+    meta:
+      collection: service_alerts
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: service_alerts
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: service_alerts
+    field: scope
+    type: string
+    meta:
+      collection: service_alerts
+      conditions: null
+      display: null
+      display_options: null
+      field: scope
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: route
+            value: route
+          - text: stop
+            value: stop
+          - text: system
+            value: system
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: scope
+      table: service_alerts
+      data_type: character varying
+      default_value: system
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: service_alerts
+    field: route_id
+    type: uuid
+    meta:
+      collection: service_alerts
+      conditions: null
+      display: null
+      display_options: null
+      field: route_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: route_id
+      table: service_alerts
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: routes
+      foreign_key_column: id
+  - collection: service_alerts
+    field: stop_id
+    type: uuid
+    meta:
+      collection: service_alerts
+      conditions: null
+      display: null
+      display_options: null
+      field: stop_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: stop_id
+      table: service_alerts
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: stops
+      foreign_key_column: id
+  - collection: service_alerts
+    field: title
+    type: string
+    meta:
+      collection: service_alerts
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: title
+      table: service_alerts
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: service_alerts
+    field: message
+    type: text
+    meta:
+      collection: service_alerts
+      conditions: null
+      display: null
+      display_options: null
+      field: message
+      group: null
+      hidden: false
+      interface: input-multiline
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: message
+      table: service_alerts
+      data_type: text
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: service_alerts
+    field: severity
+    type: string
+    meta:
+      collection: service_alerts
+      conditions: null
+      display: null
+      display_options: null
+      field: severity
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: info
+            value: info
+          - text: warning
+            value: warning
+          - text: critical
+            value: critical
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: severity
+      table: service_alerts
+      data_type: character varying
+      default_value: info
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: service_alerts
+    field: active_from
+    type: timestamp
+    meta:
+      collection: service_alerts
+      conditions: null
+      display: null
+      display_options: null
+      field: active_from
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 8
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: active_from
+      table: service_alerts
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: service_alerts
+    field: active_to
+    type: timestamp
+    meta:
+      collection: service_alerts
+      conditions: null
+      display: null
+      display_options: null
+      field: active_to
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 9
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: active_to
+      table: service_alerts
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: stop_times
+    field: id
+    type: uuid
+    meta:
+      collection: stop_times
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: stop_times
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: stop_times
+    field: trip_id
+    type: uuid
+    meta:
+      collection: stop_times
+      conditions: null
+      display: null
+      display_options: null
+      field: trip_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: trip_id
+      table: stop_times
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: trips
+      foreign_key_column: id
+  - collection: stop_times
+    field: stop_id
+    type: uuid
+    meta:
+      collection: stop_times
+      conditions: null
+      display: null
+      display_options: null
+      field: stop_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: stop_id
+      table: stop_times
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: stops
+      foreign_key_column: id
+  - collection: stop_times
+    field: sequence
+    type: integer
+    meta:
+      collection: stop_times
+      conditions: null
+      display: null
+      display_options: null
+      field: sequence
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: sequence
+      table: stop_times
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: stop_times
+    field: scheduled_time
+    type: time
+    meta:
+      collection: stop_times
+      conditions: null
+      display: null
+      display_options: null
+      field: scheduled_time
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: scheduled_time
+      table: stop_times
+      data_type: time without time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: stops
+    field: id
+    type: uuid
+    meta:
+      collection: stops
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: stops
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: stops
+    field: code
+    type: string
+    meta:
+      collection: stops
+      conditions: null
+      display: null
+      display_options: null
+      field: code
+      group: null
+      hidden: false
+      interface: input
+      note: 'Usado no QR: /p/{code}'
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: code
+      table: stops
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: stops
+    field: name
+    type: string
+    meta:
+      collection: stops
+      conditions: null
+      display: null
+      display_options: null
+      field: name
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: name
+      table: stops
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: stops
+    field: lat
+    type: decimal
+    meta:
+      collection: stops
+      conditions: null
+      display: null
+      display_options: null
+      field: lat
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: lat
+      table: stops
+      data_type: numeric
+      default_value: null
+      max_length: null
+      numeric_precision: 10
+      numeric_scale: 7
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: stops
+    field: lng
+    type: decimal
+    meta:
+      collection: stops
+      conditions: null
+      display: null
+      display_options: null
+      field: lng
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: lng
+      table: stops
+      data_type: numeric
+      default_value: null
+      max_length: null
+      numeric_precision: 10
+      numeric_scale: 7
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: stops
+    field: accessibility
+    type: json
+    meta:
+      collection: stops
+      conditions: null
+      display: null
+      display_options: null
+      field: accessibility
+      group: null
+      hidden: false
+      interface: input-code
+      note: null
+      options:
+        language: json
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: accessibility
+      table: stops
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: stops
+    field: geo
+    type: geometry.Point
+    meta:
+      collection: stops
+      conditions: null
+      display: null
+      display_options: null
+      field: geo
+      group: null
+      hidden: false
+      interface: map
+      note: null
+      options:
+        geometryType: Point
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: geo
+      table: stops
+      data_type: POINT
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: trips
+    field: id
+    type: uuid
+    meta:
+      collection: trips
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: trips
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: trips
+    field: route_id
+    type: uuid
+    meta:
+      collection: trips
+      conditions: null
+      display: null
+      display_options: null
+      field: route_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: route_id
+      table: trips
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: routes
+      foreign_key_column: id
+  - collection: trips
+    field: headsign
+    type: string
+    meta:
+      collection: trips
+      conditions: null
+      display: null
+      display_options: null
+      field: headsign
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: headsign
+      table: trips
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: trips
+    field: direction
+    type: string
+    meta:
+      collection: trips
+      conditions: null
+      display: null
+      display_options: null
+      field: direction
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: ida
+            value: ida
+          - text: volta
+            value: volta
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: direction
+      table: trips
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: trips
+    field: service_days
+    type: json
+    meta:
+      collection: trips
+      conditions: null
+      display: null
+      display_options: null
+      field: service_days
+      group: null
+      hidden: false
+      interface: input-code
+      note: null
+      options:
+        language: json
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: service_days
+      table: trips
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicle_positions
+    field: id
+    type: uuid
+    meta:
+      collection: vehicle_positions
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: vehicle_positions
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicle_positions
+    field: vehicle_id
+    type: uuid
+    meta:
+      collection: vehicle_positions
+      conditions: null
+      display: null
+      display_options: null
+      field: vehicle_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: vehicle_id
+      table: vehicle_positions
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: vehicles
+      foreign_key_column: id
+  - collection: vehicle_positions
+    field: trip_id
+    type: uuid
+    meta:
+      collection: vehicle_positions
+      conditions: null
+      display: null
+      display_options: null
+      field: trip_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: trip_id
+      table: vehicle_positions
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: trips
+      foreign_key_column: id
+  - collection: vehicle_positions
+    field: lat
+    type: decimal
+    meta:
+      collection: vehicle_positions
+      conditions: null
+      display: null
+      display_options: null
+      field: lat
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: lat
+      table: vehicle_positions
+      data_type: numeric
+      default_value: null
+      max_length: null
+      numeric_precision: 10
+      numeric_scale: 7
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicle_positions
+    field: lng
+    type: decimal
+    meta:
+      collection: vehicle_positions
+      conditions: null
+      display: null
+      display_options: null
+      field: lng
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: lng
+      table: vehicle_positions
+      data_type: numeric
+      default_value: null
+      max_length: null
+      numeric_precision: 10
+      numeric_scale: 7
+      is_nullable: false
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicle_positions
+    field: speed
+    type: decimal
+    meta:
+      collection: vehicle_positions
+      conditions: null
+      display: null
+      display_options: null
+      field: speed
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: speed
+      table: vehicle_positions
+      data_type: numeric
+      default_value: null
+      max_length: null
+      numeric_precision: 6
+      numeric_scale: 2
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicle_positions
+    field: heading
+    type: integer
+    meta:
+      collection: vehicle_positions
+      conditions: null
+      display: null
+      display_options: null
+      field: heading
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: heading
+      table: vehicle_positions
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicle_positions
+    field: occupancy
+    type: string
+    meta:
+      collection: vehicle_positions
+      conditions: null
+      display: null
+      display_options: null
+      field: occupancy
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: vazio
+            value: vazio
+          - text: medio
+            value: medio
+          - text: cheio
+            value: cheio
+      readonly: false
+      required: false
+      searchable: true
+      sort: 8
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: occupancy
+      table: vehicle_positions
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicle_positions
+    field: recorded_at
+    type: timestamp
+    meta:
+      collection: vehicle_positions
+      conditions: null
+      display: null
+      display_options: null
+      field: recorded_at
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 9
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: recorded_at
+      table: vehicle_positions
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicle_positions
+    field: received_at
+    type: timestamp
+    meta:
+      collection: vehicle_positions
+      conditions: null
+      display: null
+      display_options: null
+      field: received_at
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 10
+      special:
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: received_at
+      table: vehicle_positions
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicles
+    field: id
+    type: uuid
+    meta:
+      collection: vehicles
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      searchable: true
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: vehicles
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicles
+    field: code
+    type: string
+    meta:
+      collection: vehicles
+      conditions: null
+      display: null
+      display_options: null
+      field: code
+      group: null
+      hidden: false
+      interface: input
+      note: 'Usado no QR: /v/{code}'
+      options: null
+      readonly: false
+      required: true
+      searchable: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: code
+      table: vehicles
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: true
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicles
+    field: agency_id
+    type: uuid
+    meta:
+      collection: vehicles
+      conditions: null
+      display: null
+      display_options: null
+      field: agency_id
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: agency_id
+      table: vehicles
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: agencies
+      foreign_key_column: id
+  - collection: vehicles
+    field: plate
+    type: string
+    meta:
+      collection: vehicles
+      conditions: null
+      display: null
+      display_options: null
+      field: plate
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: plate
+      table: vehicles
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicles
+    field: capacity
+    type: integer
+    meta:
+      collection: vehicles
+      conditions: null
+      display: null
+      display_options: null
+      field: capacity
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      searchable: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: capacity
+      table: vehicles
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicles
+    field: features
+    type: json
+    meta:
+      collection: vehicles
+      conditions: null
+      display: null
+      display_options: null
+      field: features
+      group: null
+      hidden: false
+      interface: input-code
+      note: null
+      options:
+        language: json
+      readonly: false
+      required: false
+      searchable: true
+      sort: 6
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: features
+      table: vehicles
+      data_type: json
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: vehicles
+    field: status
+    type: string
+    meta:
+      collection: vehicles
+      conditions: null
+      display: null
+      display_options: null
+      field: status
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: in_service
+            value: in_service
+          - text: garage
+            value: garage
+          - text: maintenance
+            value: maintenance
+      readonly: false
+      required: false
+      searchable: true
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: status
+      table: vehicles
+      data_type: character varying
+      default_value: in_service
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_indexed: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+systemFields:
+  - collection: directus_activity
+    field: timestamp
+    schema:
+      is_indexed: true
+  - collection: directus_revisions
+    field: activity
+    schema:
+      is_indexed: true
+  - collection: directus_revisions
+    field: parent
+    schema:
+      is_indexed: true
+relations:
+  - collection: driver_assignments
+    field: driver_id
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: driver_assignments
+      many_field: driver_id
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: driver_assignments
+      column: driver_id
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: driver_assignments_driver_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: driver_assignments
+    field: vehicle_id
+    related_collection: vehicles
+    meta:
+      junction_field: null
+      many_collection: driver_assignments
+      many_field: vehicle_id
+      one_allowed_collections: null
+      one_collection: vehicles
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: driver_assignments
+      column: vehicle_id
+      foreign_key_table: vehicles
+      foreign_key_column: id
+      constraint_name: driver_assignments_vehicle_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: driver_assignments
+    field: trip_id
+    related_collection: trips
+    meta:
+      junction_field: null
+      many_collection: driver_assignments
+      many_field: trip_id
+      one_allowed_collections: null
+      one_collection: trips
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: driver_assignments
+      column: trip_id
+      foreign_key_table: trips
+      foreign_key_column: id
+      constraint_name: driver_assignments_trip_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: routes
+    field: agency_id
+    related_collection: agencies
+    meta:
+      junction_field: null
+      many_collection: routes
+      many_field: agency_id
+      one_allowed_collections: null
+      one_collection: agencies
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: routes
+      column: agency_id
+      foreign_key_table: agencies
+      foreign_key_column: id
+      constraint_name: routes_agency_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: service_alerts
+    field: route_id
+    related_collection: routes
+    meta:
+      junction_field: null
+      many_collection: service_alerts
+      many_field: route_id
+      one_allowed_collections: null
+      one_collection: routes
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: service_alerts
+      column: route_id
+      foreign_key_table: routes
+      foreign_key_column: id
+      constraint_name: service_alerts_route_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: service_alerts
+    field: stop_id
+    related_collection: stops
+    meta:
+      junction_field: null
+      many_collection: service_alerts
+      many_field: stop_id
+      one_allowed_collections: null
+      one_collection: stops
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: service_alerts
+      column: stop_id
+      foreign_key_table: stops
+      foreign_key_column: id
+      constraint_name: service_alerts_stop_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: stop_times
+    field: trip_id
+    related_collection: trips
+    meta:
+      junction_field: null
+      many_collection: stop_times
+      many_field: trip_id
+      one_allowed_collections: null
+      one_collection: trips
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: stop_times
+      column: trip_id
+      foreign_key_table: trips
+      foreign_key_column: id
+      constraint_name: stop_times_trip_id_foreign
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: stop_times
+    field: stop_id
+    related_collection: stops
+    meta:
+      junction_field: null
+      many_collection: stop_times
+      many_field: stop_id
+      one_allowed_collections: null
+      one_collection: stops
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: stop_times
+      column: stop_id
+      foreign_key_table: stops
+      foreign_key_column: id
+      constraint_name: stop_times_stop_id_foreign
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: trips
+    field: route_id
+    related_collection: routes
+    meta:
+      junction_field: null
+      many_collection: trips
+      many_field: route_id
+      one_allowed_collections: null
+      one_collection: routes
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: trips
+      column: route_id
+      foreign_key_table: routes
+      foreign_key_column: id
+      constraint_name: trips_route_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: vehicle_positions
+    field: vehicle_id
+    related_collection: vehicles
+    meta:
+      junction_field: null
+      many_collection: vehicle_positions
+      many_field: vehicle_id
+      one_allowed_collections: null
+      one_collection: vehicles
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: vehicle_positions
+      column: vehicle_id
+      foreign_key_table: vehicles
+      foreign_key_column: id
+      constraint_name: vehicle_positions_vehicle_id_foreign
+      on_update: NO ACTION
+      on_delete: CASCADE
+  - collection: vehicle_positions
+    field: trip_id
+    related_collection: trips
+    meta:
+      junction_field: null
+      many_collection: vehicle_positions
+      many_field: trip_id
+      one_allowed_collections: null
+      one_collection: trips
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: vehicle_positions
+      column: trip_id
+      foreign_key_table: trips
+      foreign_key_column: id
+      constraint_name: vehicle_positions_trip_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: vehicles
+    field: agency_id
+    related_collection: agencies
+    meta:
+      junction_field: null
+      many_collection: vehicles
+      many_field: agency_id
+      one_allowed_collections: null
+      one_collection: agencies
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: vehicles
+      column: agency_id
+      foreign_key_table: agencies
+      foreign_key_column: id
+      constraint_name: vehicles_agency_id_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL

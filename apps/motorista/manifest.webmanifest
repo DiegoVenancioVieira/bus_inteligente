@@ -1,0 +1,17 @@
+{
+  "name": "Bus Inteligente — Motorista",
+  "short_name": "BI Motorista",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0d1b2a",
+  "theme_color": "#0d1b2a",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

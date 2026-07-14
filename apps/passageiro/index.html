@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b4f9e">
+<meta name="description" content="Veja o ônibus chegando em tempo real — Aracaju/SE. Sem instalar nada.">
+<title>Bus Inteligente — Ônibus em tempo real</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<style>
+  :root {
+    --bg:#f4f6f8; --card:#ffffff; --text:#1a2233; --muted:#4a5568;
+    --accent:#0b4f9e; --ok:#0e7c66; --warn-bg:#fff3cd; --warn-text:#5c4400;
+    --err:#b02a37; --border:#d4dae3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#10161f; --card:#1a2230; --text:#e8edf4; --muted:#a8b3c4;
+            --accent:#5aa2e8; --ok:#4ecdc4; --warn-bg:#3a2e00; --warn-text:#ffd97a;
+            --err:#ff8091; --border:#2c3648; }
+  }
+  * { box-sizing:border-box; margin:0 }
+  html { font-size: 17px }
+  body { background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,sans-serif;
+         min-height:100vh; display:flex; flex-direction:column }
+  header { background:var(--accent); color:#fff; padding:12px 16px; display:flex;
+           align-items:center; gap:10px; position:sticky; top:0; z-index:1001 }
+  header a { color:#fff; text-decoration:none; font-size:1.5rem; line-height:1; padding:4px 8px }
+  header h1 { font-size:1rem; font-weight:600; flex:1 }
+  main { flex:1; max-width:640px; width:100%; margin:0 auto; padding:14px 14px 28px }
+  h2 { font-size:1.35rem; margin:6px 0 4px; display:flex; align-items:center; gap:8px }
+  .sub { color:var(--muted); font-size:.9rem; margin-bottom:12px }
+  #map { height: 42vh; min-height:260px; border-radius:14px; margin:12px 0;
+         border:1px solid var(--border) }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:14px;
+          padding:14px 16px; margin-bottom:10px }
+  .card.tap { cursor:pointer }
+  .card.tap:focus-visible { outline:3px solid var(--accent); outline-offset:2px }
+  .line-head { display:flex; align-items:center; gap:10px; flex-wrap:wrap }
+  .badge { color:#fff; font-weight:800; border-radius:8px; padding:4px 12px; font-size:1.05rem }
+  .headsign { color:var(--muted) }
+  .eta { font-size:1.7rem; font-weight:800; margin-top:6px }
+  .eta .ok { color:var(--ok) }
+  .eta .stale { color:var(--err); font-size:1.2rem }
+  .meta { color:var(--muted); font-size:.88rem; margin-top:4px }
+  .alert { background:var(--warn-bg); color:var(--warn-text); border-radius:12px;
+           padding:12px 14px; margin-bottom:10px; border:1px solid var(--border) }
+  .banner-off { background:var(--err); color:#fff; text-align:center; padding:8px 12px;
+                font-weight:600; display:none }
+  .banner-off.show { display:block }
+  .updated { text-align:center; color:var(--muted); font-size:.82rem; margin-top:12px }
+  .fav-btn { background:none; border:none; font-size:1.6rem; cursor:pointer; padding:4px;
+             line-height:1 }
+  .fav-btn:focus-visible { outline:3px solid var(--accent); border-radius:6px }
+  .stop-item { display:flex; align-items:center; gap:10px; padding:10px 4px;
+               border-bottom:1px solid var(--border) }
+  .stop-item:last-child { border-bottom:none }
+  .stop-eta { margin-left:auto; font-weight:700; white-space:nowrap }
+  .feature { display:inline-block; background:var(--bg); border:1px solid var(--border);
+             border-radius:6px; padding:2px 8px; font-size:.8rem; margin-right:6px; color:var(--muted) }
+  .empty { color:var(--muted); padding:18px 4px; text-align:center }
+  a.link { color:var(--accent); font-weight:600 }
+  .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0) }
+</style>
+</head>
+<body>
+<header>
+  <a href="./" aria-label="Início">‹</a>
+  <h1>Bus Inteligente · Aracaju</h1>
+</header>
+<div id="offline-banner" class="banner-off" role="status">Sem conexão — mostrando últimos dados</div>
+<main id="app" aria-live="polite" aria-busy="true">
+  <p class="empty">Carregando…</p>
+</main>
+<script src="vendor/leaflet.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

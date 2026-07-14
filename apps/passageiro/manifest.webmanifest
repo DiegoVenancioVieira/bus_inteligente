@@ -1,0 +1,13 @@
+{
+  "name": "Bus Inteligente — Ônibus em tempo real",
+  "short_name": "Bus Aracaju",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4f6f8",
+  "theme_color": "#0b4f9e",
+  "lang": "pt-BR",
+  "description": "Veja o ônibus chegando em tempo real — sem instalar nada.",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

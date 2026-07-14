@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#132a45">
+<title>Bus Inteligente — Gestão</title>
+<link rel="stylesheet" href="vendor/leaflet.css">
+<style>
+  :root { --bg:#0f1723; --card:#182335; --text:#e8edf4; --muted:#93a1b8;
+          --accent:#4ea8de; --ok:#2ec4b6; --warn:#ffbf47; --err:#ff6b6b; --border:#273449 }
+  * { box-sizing:border-box; margin:0 }
+  body { background:var(--bg); color:var(--text); font-family:system-ui,sans-serif; font-size:15px;
+         min-height:100vh; display:flex; flex-direction:column }
+  header { background:#132a45; padding:10px 18px; display:flex; align-items:center; gap:14px;
+           border-bottom:1px solid var(--border) }
+  header h1 { font-size:1rem; font-weight:700; margin-right:auto }
+  nav { display:flex; gap:4px }
+  nav button { background:none; border:none; color:var(--muted); padding:8px 14px; font-size:.95rem;
+               cursor:pointer; border-radius:8px; font-weight:600 }
+  nav button.active { background:var(--accent); color:#0b1520 }
+  nav button:focus-visible { outline:2px solid var(--accent) }
+  #logout { color:var(--muted); background:none; border:1px solid var(--border); border-radius:8px;
+            padding:6px 12px; cursor:pointer }
+  main { flex:1; padding:16px; max-width:1100px; width:100%; margin:0 auto }
+  h2 { font-size:1.15rem; margin-bottom:12px }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; margin-bottom:16px }
+  .tile { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px;
+          text-align:center }
+  .tile .v { font-size:1.9rem; font-weight:800 }
+  .tile .k { color:var(--muted); font-size:.82rem; margin-top:4px }
+  #map, #replay-map { height:52vh; min-height:320px; border-radius:12px; border:1px solid var(--border);
+                      margin-bottom:12px }
+  table { width:100%; border-collapse:collapse; background:var(--card); border-radius:12px; overflow:hidden }
+  th, td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--border); font-size:.9rem }
+  th { color:var(--muted); font-weight:600; font-size:.8rem; text-transform:uppercase }
+  .chip { display:inline-block; padding:3px 10px; border-radius:999px; font-size:.78rem; font-weight:700 }
+  .chip.moving { background:#0e3f38; color:var(--ok) }
+  .chip.stopped { background:#3d3208; color:var(--warn) }
+  .chip.stale, .chip.no_signal { background:#43181d; color:var(--err) }
+  .badge { color:#fff; font-weight:800; border-radius:6px; padding:2px 8px; font-size:.85rem }
+  form { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px;
+         margin-bottom:16px; display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)) }
+  form .full { grid-column:1 / -1 }
+  label { display:block; color:var(--muted); font-size:.8rem; margin-bottom:4px }
+  input, select, textarea { width:100%; padding:9px 10px; border-radius:8px; border:1px solid var(--border);
+                            background:var(--bg); color:var(--text); font-size:.95rem }
+  button.primary { background:var(--accent); color:#0b1520; border:none; border-radius:8px;
+                   padding:11px 18px; font-weight:700; cursor:pointer; font-size:.95rem }
+  button.danger-sm { background:none; border:1px solid var(--err); color:var(--err); border-radius:6px;
+                     padding:4px 10px; cursor:pointer; font-size:.8rem }
+  .msg { color:var(--err); min-height:1.2em; font-size:.85rem }
+  .ok-msg { color:var(--ok) }
+  .muted { color:var(--muted) }
+  .screen { display:none } .screen.active { display:block }
+  #login-box { max-width:380px; margin:8vh auto; display:block }
+  .replay-controls { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:10px }
+</style>
+</head>
+<body>
+<header>
+  <h1>🚌 Bus Inteligente — Gestão</h1>
+  <nav id="tabs" style="display:none">
+    <button data-tab="mapa" class="active">Mapa</button>
+    <button data-tab="escala">Escala</button>
+    <button data-tab="alertas">Alertas</button>
+    <button data-tab="kpis">KPIs</button>
+    <button data-tab="replay">Replay</button>
+  </nav>
+  <button id="logout" style="display:none">Sair</button>
+</header>
+<main>
+  <form id="login-box">
+    <div class="full"><h2>Entrar na operação</h2></div>
+    <div class="full"><label for="email">E-mail</label><input id="email" type="email" autocomplete="username"></div>
+    <div class="full"><label for="senha">Senha</label><input id="senha" type="password" autocomplete="current-password"></div>
+    <div class="full"><button type="submit" class="primary">ENTRAR</button><div id="login-msg" class="msg"></div></div>
+  </form>
+
+  <section id="tab-mapa" class="screen"></section>
+  <section id="tab-escala" class="screen"></section>
+  <section id="tab-alertas" class="screen"></section>
+  <section id="tab-kpis" class="screen"></section>
+  <section id="tab-replay" class="screen"></section>
+</main>
+<script src="vendor/leaflet.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

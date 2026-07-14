@@ -1,0 +1,15 @@
+# Segredos
+config/.env
+*.env
+!config/.env.example
+
+# Dependências / build
+node_modules/
+dist/
+build/
+.output/
+.cache/
+
+# Sistema
+.DS_Store
+Thumbs.db

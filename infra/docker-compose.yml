@@ -1,0 +1,55 @@
+# Referência de provisionamento — Bus Inteligente
+# A instância de produção já roda em https://directus-bus.candidatosinteligentes.com.br
+# (Directus 11.17.4 / Postgres). Use este compose para recriar o ambiente do zero
+# (dev local ou disaster recovery). Restore do schema: ver infra/README.md.
+services:
+  database:
+    image: postgis/postgis:16-3.4-alpine
+    environment:
+      POSTGRES_USER: directus
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?defina DB_PASSWORD}
+      POSTGRES_DB: bus_inteligente
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U directus"]
+      interval: 10s
+      retries: 5
+
+  cache:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      retries: 5
+
+  directus:
+    image: directus/directus:11.17.4
+    ports:
+      - "8055:8055"
+    depends_on:
+      database:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+    environment:
+      SECRET: ${DIRECTUS_SECRET:?defina DIRECTUS_SECRET}
+      DB_CLIENT: pg
+      DB_HOST: database
+      DB_PORT: "5432"
+      DB_DATABASE: bus_inteligente
+      DB_USER: directus
+      DB_PASSWORD: ${DB_PASSWORD}
+      CACHE_ENABLED: "true"
+      CACHE_STORE: redis
+      REDIS: redis://cache:6379
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@bus.candidatosinteligentes.com.br}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?defina ADMIN_PASSWORD}
+      PUBLIC_URL: https://directus-bus.candidatosinteligentes.com.br
+      WEBSOCKETS_ENABLED: "true"       # exigido pelo goal 01 (realtime)
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: https://bus.candidatosinteligentes.com.br
+      TZ: America/Maceio
+
+volumes:
+  db_data:
